@@ -235,29 +235,34 @@
             }
         },
         "aspects": {
-            "High Concept": {
-                "name": "High Concept",
-                "description": "First, decide on your character’s high concept. This is a single phrase or sentence that neatly sums up your character, saying who you are, what you do, what your “deal” is. When you think about your high concept, try to think of two things: how this aspect could help you, and how it might make things harder for you. Good high concept aspects do both.\n\nExamples: Feline Captain of Cirrus Skimmer; Suncaller of the Andral Desert; Chief Field Agent of IGEMA",
+            "Profession": {
+                "name": "Profession",
+                "description": "Your role in the adventuring party",
                 "value": ""
             },
-            "Trouble": {
+            "Fighting Style": {
                 "name": "Trouble",
-                "description": "Next, decide on the thing that always gets you into trouble. It could be a personal weakness, or a recurring enemy, or an important obligation—anything that makes your life complicated.\n\nExamples: Steel Assassins Want Me Dead; Cast Now, Ask Questions Later; Gotta Look Out for My Little Brother",
+                "description": "How do you fight? What do you bring when battles break out?",
                 "value": ""
             },
-            "Other Aspect 1": {
-                "name": "Other Aspect 1",
-                "description": "Now compose another aspect. Think of something really important or interesting about your character. Are they the strongest person in their hometown? Do they carry a mighty sword known through history? Do they talk too much? Are they filthy rich?",
+            "Background": {
+                "name": "Background",
+                "description": "Your upbringing or your past (may choose a magic or dragonmark aspect)",
                 "value": ""
             },
-            "Other Aspect 2": {
-                "name": "Other Aspect 2",
-                "description": "This aspect might describe your character’s relationship with other player characters or with an NPC. Or, like the third aspect you composed above, it might describe something especially interesting about your character.",
+            "Personality": {
+                "name": "Personality",
+                "description": "Your most obvious personality trait",
                 "value": ""
             },
-            "Other Aspect 3": {
-                "name": "Other Aspect 3",
-                "description": "This aspect might describe your character’s relationship with other player characters or with an NPC. Or, like the third aspect you composed above, it might describe something especially interesting about your character.",
+            "Positive Icon": {
+                "name": "Positive Icon",
+                "description": "Your positive relationship with one Icon.",
+                "value": ""
+            },
+            "Conflicted or Negative Icon": {
+                "name": "Conflicted or Negative Icon",
+                "description": "Your conflicted or negative relationship with one Icon.",
                 "value": ""
             }
         },

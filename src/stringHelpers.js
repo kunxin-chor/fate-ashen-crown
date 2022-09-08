@@ -7,5 +7,5 @@ function removeSkillCategory(skillName){
 }
 
 export {
-    removeSkillCategory
+    removeSkillCategory,
 }

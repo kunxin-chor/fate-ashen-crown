@@ -102,10 +102,8 @@
         {
             "display":"Large",
             "rank": 6
-        },
-        {
-            "display":"Battlefield"
         }
+       
     ],
     "duration":[
         {
@@ -144,23 +142,28 @@
     "harm":[
         {
             "rank": 0,
-            "harm": 0
+            "harm": 0,
+            "display": "0"
         },
         {
             "rank": 1,
-            "harm": 1
+            "harm": 1,
+            "display": "1"
         },
         {
             "rank": 2,
-            "harm": 2
+            "harm": 2,
+            "display": "2"
         },
         {
             "rank": 4,
-            "harm": 3
+            "harm": 3,
+            "display": "3"
         },
         {
-            "rank": 6,
-            "harm": 4
+            "rank": 7,
+            "harm": 4,
+            "display": "4"
         }
     
     ]   

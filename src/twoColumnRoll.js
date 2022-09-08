@@ -1,7 +1,7 @@
 import { getOneSkillFromActor, getSkills } from './character.js';
 import { getActor } from './ui.js';
 import { removeSkillCategory } from './stringHelpers.js';
-import {roll} from './actions';
+import {roll} from './actions.js';
 
 console.log(' -- twoColumnRoll.js loaded ----')
 
@@ -24,7 +24,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
                     </div>
                     <div style="flex:1; display:flex; align-items:center; margin-bottom:10px">
                         <label style="flex:1">${rightLabel}</label>
-                        <select style="flex:3" id="select-right-column>
+                        <select style="flex:3" id="select-right-column">
                             ${rightColumnSkills.map(s => `<option value="${s.name}">${removeSkillCategory(s.name)} (rank: ${s.rank})</option>`)}
                         </select>
                    </div>                           
@@ -66,13 +66,13 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
                 }
             }
         }, {
-            'width': 600
+            'width': 400
         }).render(true)
     }
 
     function executeRoll(actionType) {
-        let selectedLeft = document.querySelector('#select-left').value;
-        let selectedRight = document.querySelector("#select-right").value;
+        let selectedLeft = document.querySelector('#select-left-column').value;
+        let selectedRight = document.querySelector("#select-right-column").value;
 
         let rank = 0;
         let selectedLeftSkillInfo = {
@@ -84,7 +84,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
             selectedLeftSkillInfo = getOneSkillFromActor(actor, selectedLeft);
         }
 
-        let rank = selectedLeftSkillInfo.rank + selectedRightSkillInfo.rank
+        rank = selectedLeftSkillInfo.rank + selectedRightSkillInfo.rank
 
         let modifier = parseInt(document.querySelector("#modifier").value);
         if (!modifier) {
@@ -109,7 +109,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
         }
 
         let extraFlavor = `Attempts to ${actionFullName} with <span style="font-weight:bold">${removeSkillCategory(selectedLeftSkillInfo.name)}</span> (rank: ${selectedLeftSkillInfo.rank}) + <span style="font-weight:bold">
-                           ${selectedRightSkillInfo.name}</span> (rank: ${selectedRightSkillInfo.rank})`
+                           ${removeSkillCategory(selectedRightSkillInfo.name)}</span> (rank: ${selectedRightSkillInfo.rank})`
         if (modifier) {
             extraFlavor += " with modifier " + (modifier >= 0 ? '+' : '-') + modifier
         }
@@ -120,7 +120,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
         `;
 
         // make the roll
-        roll(actor, rank, modiifer, message);
+        roll(actor, rank, modifier, message);
 
     }
 }

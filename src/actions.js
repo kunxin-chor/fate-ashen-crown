@@ -28,3 +28,4 @@ async function roll(actor, rank, modifier, message) {
     })
 
 }
+export { roll };

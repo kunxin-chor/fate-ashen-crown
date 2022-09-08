@@ -4,6 +4,9 @@
   "esmodules": [
     "world.js"
   ],
+  "styles":[
+    "/src/styles.css"  
+  ],
   "system": "fate-core-official",
   "coreVersion": "10.284",
   "resetKeys": false,

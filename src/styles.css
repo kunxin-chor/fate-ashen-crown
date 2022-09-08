@@ -1,0 +1,9 @@
+.effort-calculator-col {
+    text-align: center;
+    cursor: pointer;
+}
+
+.effort-calculator-col.selected {
+    border: 1px solid black;
+    
+}
