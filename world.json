@@ -1,0 +1,17 @@
+{
+  "title": "Fate",
+  "version": "1.0.0",
+  "esmodules": [
+    "world.js"
+  ],
+  "system": "fate-core-official",
+  "coreVersion": "10.284",
+  "resetKeys": false,
+  "safeMode": false,
+  "systemVersion": "4.4.16",
+  "id": "fate",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10.284"
+  }
+}

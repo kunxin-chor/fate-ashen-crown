@@ -1,0 +1,168 @@
+{
+    "numberOfTargets":[
+        {
+            "display": "Self",
+            "rank": -1
+        },
+        {
+            "display": "1",
+            "rank": 0
+        },
+        {
+            "display": "2",
+            "rank": 1
+        },
+        {
+            "display": "4",
+            "rank": 2
+        },
+        {
+            "display": "8",
+            "rank": 4
+        },
+        {
+            "display": "12",
+            "rank": 7
+        }
+    ],
+    "impact":[
+        {
+            "rank": 0,
+            "display":"Limited",
+            "modifier": 0
+        },
+        {
+            "rank": 1,
+            "display":"Minor",
+            "modifier": 1
+        },
+        {
+            "rank": 2,
+            "display":"Significant",
+            "modifier": 2
+        },
+        {
+            "rank": 4,
+            "display":"Major",
+            "modifier": 3
+        },
+        {
+            "rank": 7,
+            "display":"Remarkable",
+            "modifier": 4
+        }
+    ],
+    "range":[
+        {
+            "rank": -2,
+            "display":"Touch/Self"         
+        },
+        {
+            "rank": -1,
+            "display":"Melee"            
+        },
+        {
+            "rank": 0,
+            "display":"Nearby"            
+        },
+        {
+            "rank": 1,
+            "display":"Medium"   
+        },
+        {
+            "rank": 2,
+            "display":"Far"
+        },
+        {
+            "rank": 3,
+            "display":"Extreme"
+        },
+        {
+            "rank": 5,
+            "display": "Battlefield"
+        },
+        {
+            "rank": 7,
+            "display":"City"
+        }
+    ],
+    "areaOfEffect":[
+        {
+            "rank": 0,
+            "display":"Single Target"
+        },
+        {
+            "display":"Small",
+            "rank": 2
+        },
+        {
+            "display":"Medium",
+            "rank": 4
+        },
+        {
+            "display":"Large",
+            "rank": 6
+        },
+        {
+            "display":"Battlefield"
+        }
+    ],
+    "duration":[
+        {
+            "rank": 0,
+            "display":"Instant"
+        },
+        {
+            "rank": 1,
+            "display":"Focus"
+        },
+        {
+            "rank": 2,
+            "display": "One minute"
+        },
+        {
+            "rank": 3,
+            "display":"Ten minutes"
+        },
+        {
+            "rank": 4,
+            "display":"One hour"
+        },
+        {
+            "rank": 5,
+            "display": "Half a day"
+        },
+        {
+            "rank": 6,
+            "display":"One day"
+        },
+        {
+            "rank": 7,
+            "display":"Three days"
+        }
+    ],
+    "harm":[
+        {
+            "rank": 0,
+            "harm": 0
+        },
+        {
+            "rank": 1,
+            "harm": 1
+        },
+        {
+            "rank": 2,
+            "harm": 2
+        },
+        {
+            "rank": 4,
+            "harm": 3
+        },
+        {
+            "rank": 6,
+            "harm": 4
+        }
+    
+    ]   
+    
+}
