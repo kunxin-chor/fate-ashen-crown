@@ -1,7 +1,7 @@
 import { getOneSkillFromActor, getSkills } from './character.js';
 import { getActor } from './ui.js';
 import { removeSkillCategory } from './stringHelpers.js';
-import {roll} from './actions.js';
+import { roll } from './actions.js';
 
 console.log(' -- twoColumnRoll.js loaded ----')
 
@@ -73,8 +73,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
     function executeRoll(actionType) {
         let selectedLeft = document.querySelector('#select-left-column').value;
         let selectedRight = document.querySelector("#select-right-column").value;
-
-        let rank = 0;
+   
         let selectedLeftSkillInfo = {
             'name': 'None',
             'rank': 0
@@ -82,9 +81,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
         let selectedRightSkillInfo = getOneSkillFromActor(actor, selectedRight);
         if (selectedLeft) {
             selectedLeftSkillInfo = getOneSkillFromActor(actor, selectedLeft);
-        }
-
-        rank = selectedLeftSkillInfo.rank + selectedRightSkillInfo.rank
+        }   
 
         let modifier = parseInt(document.querySelector("#modifier").value);
         if (!modifier) {
@@ -120,7 +117,7 @@ function twoColumnRoll(leftFilter, rightFilter, leftLabel = "Left Column", right
         `;
 
         // make the roll
-        roll(actor, rank, modifier, message);
+        roll(actor, selectedLeftSkillInfo.rank, selectedRightSkillInfo.rank, modifier, message);
 
     }
 }

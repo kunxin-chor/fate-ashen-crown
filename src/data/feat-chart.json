@@ -13,15 +13,27 @@
             "rank": 1
         },
         {
-            "display": "4",
+            "display": "3",
             "rank": 2
         },
         {
-            "display": "8",
+            "display": "4",
+            "rank": 3
+        },
+        {
+            "display": "6",
             "rank": 4
         },
         {
+            "display": "8",
+            "rank": 5
+        },
+        {
             "display": "12",
+            "rank": 6
+        },
+        {
+            "display": "16",
             "rank": 7
         }
     ],
@@ -42,14 +54,19 @@
             "modifier": 2
         },
         {
-            "rank": 4,
+            "rank": 3,
             "display":"Major",
             "modifier": 3
         },
         {
-            "rank": 7,
+            "rank": 4,
             "display":"Remarkable",
             "modifier": 4
+        },
+        {
+            "rank": 7,
+            "display":"Fantastic",
+            "modifier": 5
         }
     ],
     "range":[
@@ -97,10 +114,18 @@
         },
         {
             "display":"Medium",
-            "rank": 4
+            "rank": 3
         },
         {
             "display":"Large",
+            "rank": 4
+        },
+        {
+            "display":"Massive",
+            "rank": 5
+        },
+        {
+            "display":"Extreme",
             "rank": 6
         }
        
@@ -112,31 +137,31 @@
         },
         {
             "rank": 1,
-            "display":"Focus"
+            "display":"One minute"
         },
         {
             "rank": 2,
-            "display": "One minute"
-        },
+            "display": "Ten minutes"
+        },     
         {
             "rank": 3,
-            "display":"Ten minutes"
-        },
-        {
-            "rank": 4,
             "display":"One hour"
         },
         {
-            "rank": 5,
+            "rank": 4,
             "display": "Half a day"
         },
         {
-            "rank": 6,
+            "rank": 5,
             "display":"One day"
         },
         {
-            "rank": 7,
+            "rank": 6,
             "display":"Three days"
+        },
+        {
+            "rank": 7,
+            "display":"One week"
         }
     ],
     "harm":[
@@ -156,16 +181,81 @@
             "display": "2"
         },
         {
-            "rank": 4,
+            "rank": 3,
             "harm": 3,
             "display": "3"
         },
         {
-            "rank": 7,
+            "rank": 4,
             "harm": 4,
             "display": "4"
+        },
+        {
+            "rank": 7,
+            "harm": 5,
+            "display": "5"
         }
     
-    ]   
+    ],
+    "harmModifier":[
+       {
+            "rank": 0,
+            "harm": 1,
+            "display":"+0"
+       }, 
+       {
+            "rank": 2,
+            "harm": 1,
+            "display": "+1"
+        },
+        {
+            "rank": 3,
+            "harm": 2,
+            "display": "+2"
+        },
+        {
+            "rank": 4,
+            "harm": 3,
+            "display": "+3"
+        },
+        {
+            "rank": 7,
+            "harm": 4,
+            "display": "+4"
+        }
+    
+    ],
+    "scale":[
+        {
+            "rank": 0,            
+            "display": "Mortal"
+        },
+        {
+            "rank": 2,            
+            "display": "Supernatural"
+        },
+        {
+            "rank": 5,            
+            "display": "Otherworldly"
+        }
+    ],
+    "aspects":[
+        {
+            "rank": 0,
+            "display": "N/A"
+        },
+        {
+            "rank": 1,
+            "display": "Aspect"
+        },
+        {
+            "rank": 2,
+            "display": "+1 invoke"
+        },
+        {
+            "rank": 3,
+            "display": "+2 invokes"
+        }
+    ]
     
 }

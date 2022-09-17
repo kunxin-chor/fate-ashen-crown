@@ -7,9 +7,9 @@
  * @param {*} modifier 
  * @param {*} message The message to attach to the chart card
  */
-async function roll(actor, rank, modifier, message) {
-    let r = new Roll(`4dF+${rank}+${modifier}`)
-    
+async function roll(actor, approach, skill, modifier, message) {
+    let r = new Roll(`4dF+${approach}+${skill}+${modifier}`)
+
     // roll the dice
     let roll = await r.roll();
     roll.dice[0].options.sfx = { id: "fate4df", result: roll.result };
@@ -19,13 +19,23 @@ async function roll(actor, rank, modifier, message) {
     msg.alias = actor.name;
 
     // send the message
-    await roll.toMessage({
+    const chatMessage = await roll.toMessage({
         'flavor': message,
         'speaker': msg,
 
-    },{
+    }, {
         'create': true
     })
 
+    return [roll, chatMessage];
 }
-export { roll };
+
+function createRollMessage(actionName, extraFlavor="") {
+    let message = `
+    <h1>${actionName}</h1>
+    <div>${game.i18n.localize("fate-core-official.RolledBy")}: ${game.user.name}</div>
+    <div>${extraFlavor}</div>`
+    return message;
+}
+
+export { roll, createRollMessage };

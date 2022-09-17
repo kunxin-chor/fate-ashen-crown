@@ -7,3 +7,17 @@
     border: 1px solid black;
     
 }
+
+.skill-select-radio-button {
+    margin: 10px;
+}
+
+.conflict-helper-dialog {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+}
+
+input[type="radio"].select-radio-button {
+    margin-right: 5px;
+}
