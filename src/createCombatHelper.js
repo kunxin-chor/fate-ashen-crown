@@ -11,10 +11,11 @@ const attackCommand = {
     label: "Attack",
     callback: async (actor, selectedOptions) => {
 
-        function getSettingString(token, chatMessage) {
+        function getSettingString(token, chatMessage, targetNumber) {
             return JSON.stringify({
                 'token': token.data._id,     
-                'chatMessageID': chatMessage._id   
+                'chatMessageID': chatMessage._id,
+                'targetNumber': targetNumber   
             })
         }
 
@@ -34,6 +35,8 @@ const attackCommand = {
         // create target list
         const targets = getTargets();    
 
+        // check if there is split shifts
+
         let targetList = '<ul>';
         for (let t of targets) {
             targetList += `<li>
@@ -41,7 +44,7 @@ const attackCommand = {
                 data-token="${t.data._id}">${t.actor.data.name}</span>
                 <button class="roll-defend action-buttons" 
                     style="width:auto;display:inline-block"
-                    data-settings='${getSettingString(t,chatMessage)}'>Roll Defence
+                    data-settings='${getSettingString(t,chatMessage, total)}'>Roll Defence
                 </button>
             </li>`
         }
