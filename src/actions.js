@@ -32,9 +32,10 @@ async function roll(actor, approach, skill, modifier, message) {
 
 function createRollMessage(actionName, extraFlavor="") {
     let message = `
-    <h1>${actionName}</h1>
-    <div>${game.i18n.localize("fate-core-official.RolledBy")}: ${game.user.name}</div>
-    <div>${extraFlavor}</div>`
+        <h1>${actionName}</h1>
+        <div>${game.i18n.localize("fate-core-official.RolledBy")}: ${game.user.name}</div>
+        <div>${extraFlavor}</div>
+    `
     return message;
 }
 

@@ -11,11 +11,12 @@ const attackCommand = {
     label: "Attack",
     callback: async (actor, selectedOptions) => {
 
-        function getSettingString(token, chatMessage, targetNumber) {
+        function getSettingString(token, chatMessage, targetNumber, rollId) {
             return JSON.stringify({
                 'token': token.data._id,     
                 'chatMessageID': chatMessage._id,
-                'targetNumber': targetNumber   
+                'targetNumber': targetNumber,
+                'rollId': rollId
             })
         }
 
@@ -39,13 +40,15 @@ const attackCommand = {
 
         let targetList = '<ul>';
         for (let t of targets) {
+            const rollId = t.data._id + "-" + new Date().valueOf();
             targetList += `<li>
             <span class="pan-to-token" 
                 data-token="${t.data._id}">${t.actor.data.name}</span>
                 <button class="roll-defend action-buttons" 
                     style="width:auto;display:inline-block"
-                    data-settings='${getSettingString(t,chatMessage, total)}'>Roll Defence
+                    data-settings='${getSettingString(t,chatMessage, total, rollId)}'>Roll Defence
                 </button>
+                <span id="${rollId}"></span>
             </li>`
         }
         targetList += '</ul>';
