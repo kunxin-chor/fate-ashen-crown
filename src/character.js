@@ -5,8 +5,7 @@ console.log("---- character.js loaded ------")
 
 // given an actor, retrieve its skills
 // this is prone to change thanks to Foundry changing its data format all the time
-function getSkillsFromActor(actor) {
-    console.log(actor.data);
+function getSkillsFromActor(actor) {    
     return actor.data.data.skills;
 }
 

@@ -63,7 +63,7 @@ const attackCommand = {
 
 const createCombatHelper = () => {
     const actor = getActor();
-    const conflictHelper = new ConflictHelperDialog(actor, [attackCommand]);
+    const conflictHelper = new ConflictHelperDialog("Conflict Helper", actor, [attackCommand]);
     return conflictHelper;
 }
 

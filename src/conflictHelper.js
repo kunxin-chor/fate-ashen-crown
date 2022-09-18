@@ -3,7 +3,8 @@ import { getOneSkillFromActor} from './character.js'
 import { roll} from './actions.js'
 
 class ConflictHelperDialog {
-    constructor(actor, commands=[]) {
+    constructor(title, actor, commands=[]) {
+        this.title = title;
         this.actor = actor;
         this.commands = commands;
     }
@@ -75,7 +76,7 @@ class ConflictHelperDialog {
 
 
         let dialog = new Dialog({
-            title: "Conflict Helper",
+            title:this.title,
             content: content,          
             buttons: buttons
         }, {
