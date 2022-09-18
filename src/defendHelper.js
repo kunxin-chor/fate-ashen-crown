@@ -30,7 +30,7 @@ const createDefendCommand = (params) => {
 
             await chatMessage.update({
                 flavor: chatMessage.flavor +
-                    ` <div>Defend Result: ${total} vs ${params.targetNumber}</div>
+                    ` <div>Result: ${total} vs ${params.targetNumber}</div>
                       <div>Shifts: ${shifts}</div>
                       <div>Result: ${results}<div>
                     `
@@ -39,7 +39,7 @@ const createDefendCommand = (params) => {
             // update the original chat message
             const element = document.createElement('div');
             element.innerHTML = params.originChatMessage.flavor;
-            element.querySelector(`#${params.rollId}`).innerHTML = `Defend Result: ${shifts} (${results}) `;
+            element.querySelector(`#${params.rollId}`).innerHTML = `Result: ${shifts} (${results}) `;
             
             await params.originChatMessage.update({
                 flavor: element.outerHTML

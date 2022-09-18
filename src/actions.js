@@ -1,5 +1,7 @@
 
 
+
+
 /**
  * Make a roll
  * @param {*} actor The actor initiating the roll
@@ -7,8 +9,18 @@
  * @param {*} modifier 
  * @param {*} message The message to attach to the chart card
  */
-async function roll(actor, approach, skill, modifier, message) {
-    let r = new Roll(`4dF+${approach}+${skill}+${modifier}`)
+async function roll(actor, approach, skill, modifiers, message, originalChatMessage=null) {
+
+    const processModifiers = (modifiers) => {
+        if (!Array.isArray(modifiers)) {
+            return modifiers;
+        } else {
+            return modifiers.reduce((acc, cur) => acc + cur.value, 0);
+        }
+    }
+
+    const finalModifier = processModifiers(modifiers); 
+    let r = new Roll(`4dF+${approach}+${skill}+${finalModifier}`)
 
     // roll the dice
     let roll = await r.roll();
@@ -18,19 +30,34 @@ async function roll(actor, approach, skill, modifier, message) {
     let msg = ChatMessage.getSpeaker(actor);
     msg.alias = actor.name;
 
-    // send the message
-    const chatMessage = await roll.toMessage({
-        'flavor': message,
-        'speaker': msg,
+    // send the message if there isn't an original chat message
+    let chatMessage = null;
+    if (originalChatMessage === null) {
 
-    }, {
-        'create': true
-    })
+        chatMessage = await roll.toMessage({
+            'flavor': message,
+            'speaker': msg,
+
+        }, {
+            'create': true
+        })
+    } else {
+        chatMessage = originalChatMessage;
+        await chatMessage.update(
+            {
+                'flavor': message,
+                'speaker':msg,
+                'rolls': [roll]
+            }
+        )
+    }
 
     return [roll, chatMessage];
+
+
 }
 
-function createRollMessage(actionName, extraFlavor="") {
+function createRollMessage(actionName, extraFlavor = "") {
     let message = `
         <h1>${actionName}</h1>
         <div>${game.i18n.localize("fate-core-official.RolledBy")}: ${game.user.name}</div>

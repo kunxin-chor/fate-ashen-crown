@@ -4,14 +4,14 @@
   "esmodules": [
     "world.js"
   ],
-  "styles":[
-    "/src/styles.css"  
+  "styles": [
+    "/src/styles.css"
   ],
   "system": "fate-core-official",
   "coreVersion": "10.284",
   "resetKeys": false,
   "safeMode": false,
-  "systemVersion": "4.4.16",
+  "systemVersion": "4.4.20",
   "id": "fate",
   "compatibility": {
     "minimum": "10",

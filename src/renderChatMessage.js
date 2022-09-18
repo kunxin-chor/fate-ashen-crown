@@ -1,4 +1,5 @@
 import { createDefenderHelper } from "./defendHelper.js";
+import { attackCommand } from "./createCombatHelper.js";
 
 export default {
     process: (message, html, data) => {
@@ -37,6 +38,50 @@ export default {
                   rollId: settings.rollId
                 });
             defendHelper.render(true);
+        })
+
+        html.find('button.reroll').click(async (e) =>{
+           const settings = JSON.parse(e.target.dataset.settings);
+           
+           // recreate targets
+            const targets = settings.targets.map(t => canvas.tokens.get(t));
+            const actor = game.actors.get(settings.actorID);
+            const originalChatMessage = game.messages.get(settings.chatMessageID);
+
+            // re-execue the command
+            attackCommand.callback(actor, settings.options, targets, originalChatMessage);            
+
+        })
+
+        html.find('.adjust').click(async(e)=>{
+            const settings = JSON.parse(e.target.dataset.settings);      
+            const originalChatMessage = game.messages.get(settings.chatMessageID);
+           
+            // recreate the flavor as a HTML DOM
+            const element = document.createElement('div');
+            element.innerHTML = originalChatMessage.flavor;
+            const newTotal = parseInt(settings.total + 2);
+            element.querySelector('.attack-result').innerHTML = `Attack Result: ${settings.total + 2} `;
+      
+            settings.total = newTotal;
+      
+            
+            element.querySelector('.adjust').dataset.settings = JSON.stringify(settings);          
+      
+            // update the target number for each target
+            element.querySelector('ul').childNodes.forEach((li)=>{
+                const button = li.querySelector('button');
+                let settings = JSON.parse(button.dataset.settings);
+                settings.targetNumber = parseInt(settings.targetNumber) + 2;
+                button.dataset.settings = JSON.stringify(settings);                
+            })
+
+            // update the chat message
+            originalChatMessage.update({
+                flavor: element.outerHTML
+            })        
+
+            
         })
     }
 }
