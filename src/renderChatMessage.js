@@ -31,11 +31,13 @@ export default {
             const token = canvas.tokens.get(settings.token);
             const originChatMessage = game.messages.get(settings.chatMessageID);
             const targetNumber = settings.targetNumber;
+            const effectModifier = parseInt(settings.effectModifier);
             const defendHelper = createDefenderHelper(token.actor, 
                 { token: token, 
                   targetNumber: targetNumber,
                   originChatMessage: originChatMessage,
-                  rollId: settings.rollId
+                  rollId: settings.rollId,
+                  effectModifier: effectModifier
                 });
             defendHelper.render(true);
         })

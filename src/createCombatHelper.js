@@ -8,11 +8,12 @@ const attackCommand = {
     label: "Attack",
     callback: async (actor, selectedOptions, targets = [], originalChatMessage = null, originalRoll = null, adjustModifier = 0) => {
 
-        function getSettingString(token, chatMessage, targetNumber, rollId) {
+        function getSettingString(token, chatMessage, targetNumber, effectModifier, rollId) {
             return JSON.stringify({
                 'token': token.data._id,
                 'chatMessageID': chatMessage._id,
                 'targetNumber': targetNumber,
+                'effectModifier': effectModifier,
                 'rollId': rollId
             })
         }
@@ -24,11 +25,12 @@ const attackCommand = {
             const message = createRollMessage("Attack");
             const approach = getOneSkillFromActor(actor, selectedOptions.approach);
             const skill = getOneSkillFromActor(actor, selectedOptions.skill);
-            const modifier = 0;
+            const rollModifier = selectedOptions.rollModifier;
+           
             [rollData, chatMessage] = await roll(actor,
                 approach.rank,
                 skill.rank,
-                modifier,
+                rollModifier,
                 message,
                 originalChatMessage);
         } else {
@@ -56,7 +58,8 @@ const attackCommand = {
             targets: [...targets.map(t => t.data._id)],
             chatMessageID: chatMessage._id,
             total: total,
-            rollData: rollData.toJSON()
+            rollData: rollData.toJSON(),
+            effectModifier: selectedOptions.effectModifier
         }
 
   
@@ -69,7 +72,7 @@ const attackCommand = {
                 data-token="${t.data._id}">${t.actor.data.name}</span>
                 <button class="roll-defend action-buttons" 
                     style="width:auto;display:inline-block"
-                    data-settings='${getSettingString(t, chatMessage, total, rollId)}'>Roll Defence
+                    data-settings='${getSettingString(t, chatMessage, total, selectedOptions.effectModifier, rollId)}'>Roll Defence
                 </button>
                 <span id="${rollId}"></span>
             </li>`

@@ -8,7 +8,16 @@ function convertShiftsToOutcome(shifts) {
     } else {
         return "Failure"
     }
-
 }
 
-export {convertShiftsToOutcome}
+function getEffectFromShifts(shifts) {
+    if (shifts >=3) {
+        return 2
+    } else if (shifts >=0) {
+        return 1
+    } else {
+        return 0;
+    }
+}
+
+export {convertShiftsToOutcome, getEffectFromShifts}

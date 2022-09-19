@@ -54,6 +54,40 @@ function getOneSkillFromActor(actor, skillName) {
     return actor.data.data.skills[skillName]
 }
 
+function getItems(actor, type) {
+    // look for extras with the `weapon: ` in permissions
+    let items = duplicate(actor.data.items);
+    let processedItems = items
+        .filter(i => {
+            return i.data.permissions && removeTags(i.data.permissions).toLowerCase().startsWith(type)
+        })
+        .map(item => {
+
+            let permission = removeTags(item.data.permissions);
+            let rawProperties = permission.split(',');
+            let propertyList = rawProperties.map(p => {
+                let chunks = p.split(':').map(s => s.trim());
+                return {
+                    'name': chunks[0],
+                    'value': chunks[1]
+                }
+
+            })
+
+            let properties = {};
+            for (let p of propertyList) {
+                properties[p.name] = p.value;
+            }
+
+            properties.name = item.name;
+            properties.id = item._id;
+            return properties;
+
+        })
+    return processedItems;
+
+}
+
 export {
-    getSkills, getOneSkillFromActor
+    getSkills, getOneSkillFromActor, getItems
 }
