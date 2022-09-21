@@ -4,7 +4,7 @@ import {twoColumnRoll} from './src/twoColumnRoll.js';
 import {EffortCalculator} from './src/effortCalculator.js';
 import {createCombatHelper} from './src/createCombatHelper.js'
 import renderChatMessage from './src/renderChatMessage.js';
-
+import renderAspectHelper from './src/AspectHelper.js';
 
 console.log("----Fateful: World.js------")
 
@@ -23,6 +23,6 @@ Hooks.on("renderChatMessage", (chatMessage, html, data) => {
 
 // register those in global scope so that those can be used in marco
 window.Fateful = {
-    getSkills, getActor, twoColumnRoll, createEffortCalculator, createCombatHelper
+    getSkills, getActor, twoColumnRoll, createEffortCalculator, createCombatHelper, renderAspectHelper
 }
 
