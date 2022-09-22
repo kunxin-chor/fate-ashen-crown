@@ -66,7 +66,7 @@ const attackCommand = {
         // check if there is split shifts
         let targetList = '<ul>';
         for (let t of targets) {
-            const rollId = t.data._id + "-" + new Date().valueOf();
+            const rollId = "R" + t.data._id + "-" + new Date().valueOf();
             targetList += `<li>
             <span class="pan-to-token" 
                 data-token="${t.data._id}">${t.actor.data.name}</span>

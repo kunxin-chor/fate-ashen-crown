@@ -1,4 +1,5 @@
 /** Contain functionalities for working with characters **/
+import {removeTags} from './stringHelpers.js';
 
 // debug
 console.log("---- character.js loaded ------")
@@ -56,14 +57,17 @@ function getOneSkillFromActor(actor, skillName) {
 
 function getItems(actor, type) {
     // look for extras with the `weapon: ` in permissions
-    let items = duplicate(actor.data.items);
+    console.log(actor.items);
+    let items = duplicate(actor.items);
+   
     let processedItems = items
         .filter(i => {
-            return i.data.permissions && removeTags(i.data.permissions).toLowerCase().startsWith(type)
+            console.log(i);
+            return i.system.permissions && removeTags(i.system.permissions).toLowerCase().startsWith(type)
         })
         .map(item => {
 
-            let permission = removeTags(item.data.permissions);
+            let permission = removeTags(item.system.permissions);
             let rawProperties = permission.split(',');
             let propertyList = rawProperties.map(p => {
                 let chunks = p.split(':').map(s => s.trim());
