@@ -5,8 +5,13 @@ console.log("---- ui.js loaded ----")
 
 
 function getActor() {
-    const actorD = canvas?.tokens?.controlled[0]?.actor || game.user.character || token.actor;
+
+    try {
+    const actorD = canvas?.tokens?.controlled[0]?.actor || game.user?.character || (token && token?.actor);
     return actorD;
+    } catch (e) {
+        return null;
+    }
 }
 
 function getTargets() {
@@ -34,7 +39,7 @@ function renderSkillSelect(title, actor, filter, id, others="") {
         html += `<div class="skill-select-radio-button">
             <input type="radio"
                 id="select-${id}-${index+1}"
-                class="select-${id}-others"
+                class="select-${id}-others select-radio-button"
                 name="${id}"
                 value="others"
             />

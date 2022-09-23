@@ -25,7 +25,7 @@ const attackCommand = {
         let rollData = null;
         let chatMessage = null;
         if (originalRoll === null) {
-            const message = createRollMessage("Attack");
+            const message = createRollMessage(selectedOptions.action);
             const approach = getOneSkillFromActor(actor, selectedOptions.approach);
             const skill = getOneSkillFromActor(actor, selectedOptions.skill);
             const rollModifier = selectedOptions.rollModifier;
@@ -46,7 +46,7 @@ const attackCommand = {
             })
         }
 
-        const total = rollData.total;
+        let total = rollData.total;
 
         // get all the targets if none is given
         if (targets.length === 0) {
@@ -56,7 +56,7 @@ const attackCommand = {
         // serialize the roll settings in case of a re-roll or a +2
         const rollSettings = {
             actorID: actor.data._id,
-            action: "Attack",
+            action: selectedOptions.action,
             options: selectedOptions,
             targets: [...targets.map(t => t.data._id)],
             chatMessageID: chatMessage._id,
@@ -65,9 +65,15 @@ const attackCommand = {
             effectModifier: selectedOptions.effectModifier
      
         }
-
   
         // check if there is split shifts
+        let splitShiftMessage= "";
+        if (document.querySelector("#split-shifts")?.checked) {
+            const oldTotal = total;
+            total = parseInt(total / targets.size);
+            splitShiftMessage = `<div>Total of ${oldTotal} is divided by ${targets.size}</div>`
+        }
+
         let targetList = '<ul>';
         for (let t of targets) {
             const rollId = "R" + t.data._id + "-" + new Date().valueOf();
@@ -87,7 +93,8 @@ const attackCommand = {
         await chatMessage.update({
             flavor: chatMessage.flavor +
                 `   <div>
-                        <div class="attack-result">Attack Result: ${total} </div>
+                        ${splitShiftMessage}
+                        <div class="attack-result">Roll Result: ${total} </div>
                         <div style="display:flex">
                             <button class="reroll action-buttons" data-settings='${JSON.stringify(rollSettings)}'>Reroll</button>
                             <button class="adjust action-buttons" data-settings='${JSON.stringify(rollSettings)}'>Adjust Roll</button>
@@ -102,8 +109,18 @@ const attackCommand = {
 
 const createCombatHelper = () => {
     const actor = getActor();
-    const conflictHelper = new ConflictHelperDialog("Conflict Helper", actor, [attackCommand]);
-    return conflictHelper;
+    if (actor) {
+        const conflictHelper = new ConflictHelperDialog("Conflict Helper", actor, [attackCommand]);
+        return conflictHelper;
+    } else {
+        ui.notifications.error("No actor selected");    
+        return {
+            render:()=>{
+
+            }
+        }
+    }
+    
 }
 
 export { createCombatHelper, attackCommand };

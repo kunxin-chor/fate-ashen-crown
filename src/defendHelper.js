@@ -109,6 +109,23 @@ class DefendHelperDialog extends ConflictHelperDialog {
 
         return html;
     }
+
+    handleDialogRender = (html) => {
+        // disable the attack button 
+        html.find('.dialog-button.defend').prop('disabled', true);
+
+        // enable the attack button if an action, approach and skill is selected
+        html.find('.select-radio-button').change(() => {
+        
+            let approach = html.find('.select-approach:checked').val();
+            let skill = html.find('.select-combat:checked').val();
+            if (approach && skill) {
+                html.find('.dialog-button.defend').prop('disabled', false);
+            } else {
+                html.find('.dialog-button.defend').prop('disabled', true);
+            }
+        });  
+   }
 }
 
 const createDefendCommand = (params) => {
@@ -152,12 +169,11 @@ const createDefendCommand = (params) => {
                 extraMessages.push("Armor reduced harm by " + selectedOptions.armor.damage_reduction);
             }      
    
-
             // send this back
             if (effects > 0) {
                 effects += params.effectModifier;
             }
-            console.log(extraMessages);
+
             await chatMessage.update({
                 flavor: chatMessage.flavor +
                     ` ${extraMessages.map(s => `<div>${s}<div>`).join("")}
@@ -169,13 +185,14 @@ const createDefendCommand = (params) => {
             })
 
             // update the original chat message
-            const element = document.createElement('div');
-            element.innerHTML = params.originChatMessage.flavor;
-            element.querySelector(`#${params.rollId}`).innerHTML = `<br/>Result: ${shifts} (${results}) Effect: ${effects}`;
+            // need to rework this
+            // const element = document.createElement('div');
+            // element.innerHTML = params.originChatMessage.flavor;
+            // element.querySelector(`#${params.rollId}`).innerHTML = `<br/>Result: ${shifts} (${results}) Effect: ${effects}`;
 
-            await params.originChatMessage.update({
-                flavor: element.outerHTML
-            })
+            // await params.originChatMessage.update({
+            //     flavor: element.outerHTML
+            // })
 
         }
     }

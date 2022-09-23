@@ -43,7 +43,7 @@ class ConflictHelperDialog {
     renderActionSelect = () => {
         let html = `<h3>Action</h3>`;
         for (let c of this.possibleActions) {
-            html += `<div><input type="radio" id="select-action-${c}" name="action" value="${c}">
+            html += `<div><input type="radio" class="select-radio-button" id="select-action-${c}" name="action" value="${c}">
             <label for="select-action-${c}">${c}</label></div>`
         }
 
@@ -156,6 +156,23 @@ class ConflictHelperDialog {
         commandCallback(this.actor, selectedOptions);
     }
 
+    handleDialogRender = (html) => {
+         // disable the attack button 
+         html.find('.dialog-button.attack').prop('disabled', true);
+
+         // enable the attack button if an action, approach and skill is selected
+         html.find('.select-radio-button').change(() => {
+             let action = html.find('input[name="action"]:checked').val();
+             let approach = html.find('.select-approach:checked').val();
+             let skill = html.find('.select-combat:checked').val();
+             if (action && approach && skill) {
+                 html.find('.dialog-button.attack').prop('disabled', false);
+             } else {
+                 html.find('.dialog-button.attack').prop('disabled', true);
+             }
+         });  
+    }
+
     render = () => {
         let content = this.createContent();
 
@@ -178,7 +195,8 @@ class ConflictHelperDialog {
         let dialog = new Dialog({
             title: this.title,
             content: content,
-            buttons: buttons
+            buttons: buttons,
+            render: this.handleDialogRender
         }, {
             'width': 980
         });
