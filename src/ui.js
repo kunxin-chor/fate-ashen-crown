@@ -16,7 +16,7 @@ function getTargets() {
 function renderSkillSelect(title, actor, filter, id, others="") {
     const skills = getSkills(actor, filter);
     let index = 0;
-    let html = `<h2>${title}</h2>`;
+    let html = `<h3>${title}</h3>`;
     for (let skill of skills) {
         html += `<div class="skill-select-radio-button">
                     <input type="radio" 

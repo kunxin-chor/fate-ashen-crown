@@ -27,7 +27,9 @@ export default {
 
         // roll defend
         html.find('button.roll-defend').click(async (e) => {
+            
             const settings = JSON.parse(e.target.dataset.settings);
+            console.log(settings);
             const token = canvas.tokens.get(settings.token);
             const originChatMessage = game.messages.get(settings.chatMessageID);
             const targetNumber = settings.targetNumber;
@@ -37,7 +39,9 @@ export default {
                   targetNumber: targetNumber,
                   originChatMessage: originChatMessage,
                   rollId: settings.rollId,
-                  effectModifier: effectModifier
+                  effectModifier: effectModifier,
+                  weapon: settings.weapon,
+                  action: settings.action
                 });
             defendHelper.render(true);
         })

@@ -8,13 +8,16 @@ const attackCommand = {
     label: "Attack",
     callback: async (actor, selectedOptions, targets = [], originalChatMessage = null, originalRoll = null, adjustModifier = 0) => {
 
-        function getSettingString(token, chatMessage, targetNumber, effectModifier, rollId) {
+
+        function getSettingString(token, chatMessage, targetNumber, effectModifier, rollId, weapon, action) {
             return JSON.stringify({
                 'token': token.data._id,
                 'chatMessageID': chatMessage._id,
                 'targetNumber': targetNumber,
                 'effectModifier': effectModifier,
-                'rollId': rollId
+                'rollId': rollId,
+                'weapon': weapon,
+                'action': action
             })
         }
 
@@ -60,6 +63,7 @@ const attackCommand = {
             total: total,
             rollData: rollData.toJSON(),
             effectModifier: selectedOptions.effectModifier
+     
         }
 
   
@@ -72,7 +76,7 @@ const attackCommand = {
                 data-token="${t.data._id}">${t.actor.data.name}</span>
                 <button class="roll-defend action-buttons" 
                     style="width:auto;display:inline-block"
-                    data-settings='${getSettingString(t, chatMessage, total, selectedOptions.effectModifier, rollId)}'>Roll Defence
+                    data-settings='${getSettingString(t, chatMessage, total, selectedOptions.effectModifier, rollId, selectedOptions.weapon, selectedOptions.action)}'>Roll Defence
                 </button>
                 <span id="${rollId}"></span>
             </li>`

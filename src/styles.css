@@ -15,7 +15,6 @@
 .conflict-helper-dialog {
     display: flex;
     flex-direction: row;
-    width: 800px;
 }
 
 input[type="radio"].select-radio-button {
